@@ -1,0 +1,230 @@
+1. Artificial Intelligence (AI)
+
+Definition: The broadest concept. AI is the science of making machines “think” or “act” intelligently like humans.
+
+Goal: Enable machines to mimic human intelligence — reasoning, problem-solving, decision-making, learning.
+
+Examples:
+
+Virtual assistants (Siri, Alexa)
+
+Chess-playing computers
+
+Chatbots
+
+Fraud detection systems
+
+2. Machine Learning (ML)
+
+Definition: A subset of AI that focuses on systems that learn automatically from data without being explicitly programmed.
+
+Goal: Use algorithms to detect patterns, make predictions, or improve performance with experience (data).
+
+Examples:
+
+Email spam filters
+
+Predicting house prices
+Features (Inputs) → Area, Bedrooms, Location Score, Age of House
+
+Label (Output) → House Price
+
+Here, the ML model learns complex relationships:
+
+Larger area → Higher price
+
+More bedrooms → Higher price
+
+Better location → Higher price
+
+Older house → Lower price
+
+Recommendation systems (Netflix, Amazon)
+
+3. Deep Learning (DL)
+
+Definition: A subset of ML that uses artificial neural networks with many layers (deep neural networks).
+
+Goal: Handle large, complex data (images, videos, text, speech) and automatically extract features without manual intervention.
+
+Examples:
+For an image of a cat 🐱:
+
+Layer 1 → detects edges (lines, corners)
+
+Layer 2 → detects shapes (ears, eyes)
+
+Layer 3 → detects object parts (face, legs)
+
+Final Layer → predicts “Cat”
+Image recognition (face unlock in phones)
+
+Speech recognition (Google Translate voice)
+
+Self-driving cars
+
+ChatGPT
+
+Train-Test Split
+What is Train-Test Split?
+
+When we build a machine learning model, we don’t give it all the data at once.
+We split the dataset into two (sometimes three) parts:
+
+Training Set →
+
+Used to teach the model.
+
+The model looks at input features and corresponding labels (answers) to learn patterns.
+
+Test Set →
+
+Used to evaluate how well the model performs on unseen data.
+
+This tells us if the model has really learned, or if it just memorized the training data (overfitting).
+
+SkLearn(Scikit-learn)
+What is scikit-learn (sklearn)?
+
+scikit-learn is a Python library for Machine Learning.
+
+It provides simple, efficient tools for data analysis, preprocessing, training ML models, and evaluation.
+
+Built on top of NumPy, SciPy, and Matplotlib → which makes it fast and reliable.
+Why do we use sklearn?
+
+Because it makes ML workflows super easy:
+
+Preprocessing data → handling missing values, scaling, encoding categories.
+
+Splitting data → train_test_split for train & test sets.
+
+Training models → logistic regression, decision trees, random forest, SVM, KNN, etc.
+
+Evaluating models → accuracy, confusion matrix, precision, recall, F1-score.
+
+Saving/loading models → so you don’t need to retrain every time.
+
+1. Import libraries
+import pandas as pd
+from sklearn.model_selection import train_test_split
+
+pandas → to create and handle tabular dataset.
+
+train_test_split → function that splits data into training and testing sets.
+
+data = pd.DataFrame({
+    "Hours_Studied": [2, 4, 6, 8, 10, 1, 9, 5],
+    "Attendance": [60, 65, 70, 80, 85, 50, 90, 60],
+    "Result": [0, 0, 1, 1, 1, 0, 1, 0]  # 0 = Fail, 1 = Pass
+})
+
+3. Separate Features and Target
+X = data[["Hours_Studied", "Attendance"]]
+y = data["Result"]
+
+X (features): Independent variables → inputs to the model.
+(Hours_Studied, Attendance)
+
+y (target/label): Dependent variable → output to be predicted.
+(Result)
+
+4. Train-Test Split
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.25, random_state=1
+)
+test_size=0.25 → 25% data goes to test set, 75% to training set.
+
+random_state=1 → fixes the randomness so results are reproducible.
+
+print("Training Data:")
+print(X_train)
+print("\nTesting Data:")
+print(X_test)
+
+Data preprocessing recap
+
+1. Data Collection
+
+Gather data from different sources (CSV, Excel, SQL, APIs, web scraping, etc.).
+
+Ensure consistency across datasets.
+
+2. Data Cleaning
+
+Handling missing values:
+
+Remove rows/columns with too many missing values.
+
+Fill with mean/median/mode or forward/backward fill.
+
+Remove duplicates.
+
+Handle outliers using IQR, z-score, or domain knowledge.
+
+3. Data Transformation
+
+Encoding categorical variables:
+
+Label Encoding (for ordinal data).
+
+One-Hot Encoding (for nominal data).
+
+Feature scaling:
+
+Standardization (mean = 0, std = 1).
+
+Normalization (range 0–1).
+
+Log/Power transformation for skewed distributions.
+
+Steps in EDA for Predictive Modeling
+1. Understand the Target Variable
+
+Is it classification (Yes/No, categories) or regression (numeric)?
+
+Plot distribution of the target:
+
+Histogram for numeric targets.
+
+Bar plot for categorical targets.
+
+Check imbalance (e.g., 90% No, 10% Y
+
+2. Check Data Quality
+
+Missing values (imputation strategies).
+
+Duplicates, inconsistent categories.
+
+Outliers (might affect regression/classification).
+
+3. Univariate Analysis (Features Alone)
+
+Numerical features → histograms, boxplots.
+
+Categorical features → countplots, pie charts.
+👉 Helps see skewness, transformations needed, etc.
+
+4. Bivariate Analysis (Features vs Target)
+
+Numeric vs Target:
+
+Correlation heatmap (Pearson/Spearman).
+
+Boxplot of numeric feature grouped by target.
+
+Categorical vs Target:
+
+Grouped bar plots.
+
+Chi-square test of independence.
+
+5. Multivariate Analysis
+
+Feature interactions (pairplots, scatter plots).
+
+Data Splitting Consideration
+
+Always do EDA only on training set (to avoid data leakage).
+
